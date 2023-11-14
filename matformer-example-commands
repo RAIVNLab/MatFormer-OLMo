@@ -1,0 +1,18 @@
+# set "paths" variables for data manually in configs/pile-tiny.yaml
+#
+# 180M, 20B tokens
+sbatch scripts/pile_test.sh --matformer_factor=8 --model.d_model=512 --model.n_heads=16 --model.n_layers=8 --model.max_sequence_length=2048 --device_train_microbatch_size=8 --global_train_batch_size=128 --max_duration=75000  --optimizer.learning_rate=1.0e-3 --console_log_interval=10 --run_name="matformer-olmo-180M"
+
+# 460M, 40B tokens
+sbatch scripts/pile_test.sh --matformer_factor=8 --model.d_model=1024 --model.n_heads=16 --model.n_layers=8 --model.max_sequence_length=2048 --device_train_microbatch_size=8 --global_train_batch_size=256 --max_duration=75000 --optimizer.learning_rate=1.0e-3 --run_name="matformer-olmo-460M"
+
+# 1.3B, 160B tokens
+sbatch scripts/pile_test.sh --matformer_factor=8 --model.d_model=2048 --model.n_heads=16 --model.n_layers=8 --model.max_sequence_length=2048 --device_train_microbatch_size=8 --global_train_batch_size=512 --max_duration=150000 --optimizer.learning_rate=1.0e-3 --run_name="matformer-olmo-1300M"
+
+# Starting from a checkpoint
+sbatch scripts/pile_test.sh --matformer_factor=8 --model.d_model=2048 --model.n_heads=16 --model.n_layers=8 --model.max_sequence_length=2048 --device_train_microbatch_size=8 --global_train_batch_size=512 --max_duration=30000 --optimizer.learning_rate=1.0e-6 --load_path=:"<ckpt_dir>" --run_name="matformer-olmo-1300M-finetune"
+
+# Training a baseline model -- set matformer_factor to 1
+sbatch scripts/pile_test.sh --matformer_factor=1 --model.d_model=2048 --model.n_heads=16 --model.n_layers=8 --model.max_sequence_length=2048 --device_train_microbatch_size=8 --global_train_batch_size=512 --max_duration=150000 --optimizer.learning_rate=1.0e-3 --run_name="baseline-olmo-1300M"
+
+

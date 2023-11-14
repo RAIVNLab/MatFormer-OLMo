@@ -1,0 +1,21 @@
+# NOTE: when upgrading requirements here you may have to rebuild and push some
+# Docker images. See each Dockerfile for details on how to do that.
+numpy
+torch>=2.0
+torchmetrics
+tokenizers
+click
+rich
+cached-path
+beaker-gantry
+omegaconf
+wandb
+logzio-python-handler
+boto3
+google-cloud-storage
+packaging
+datasets
+scikit-learn
+smashed[remote]>=0.21.1
+msgspec>=0.14.0
+cached_path
